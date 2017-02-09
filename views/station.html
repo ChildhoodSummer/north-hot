@@ -1,0 +1,26 @@
+<div when-scrolled="loadMore()">
+    <div class="weui-panel" ng-repeat="l in list" style="margin: 0">
+        <div class="weui-panel__hd" ng-if="l.Myflag>=0">您供暖卡所属的服务站点</div>
+        <div class="weui-panel__bd">
+            <div class="weui-media-box weui-media-box_text">
+                <h4 class="weui-media-box__title" ng-bind="l.Title"></h4>
+                <p class="weui-media-box__desc" ng-bind-html="l.Content | to_trusted"></p>
+                <ul class="weui-media-box__info">
+                    <li class="weui-media-box__info__meta" ng-click="gomap(l)">查看地图</li>
+                    <a href="tel:{{l.Tel}}" class="weui-media-box__info__meta weui-media-box__info__meta_extra" ng-if="l.Tel.split('、').length==1"
+                        style="color: #cecece;">联系营业厅</a>
+                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra" ng-if="l.Tel.split('、').length>1" ng-click="tel(l)">联系营业厅</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="weui-mask" id="iosMask" style="display:none"></div>
+    <div class="weui-actionsheet" id="iosActionsheet" style="display:none">
+        <div class="weui-actionsheet__menu">
+            <a class="weui-actionsheet__cell tedis" ng-repeat="t in tellist" href="tel:{{t}}"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{t}}</a>
+        </div>
+        <div class="weui-actionsheet__action">
+            <div class="weui-actionsheet__cell" ng-click="iosActionsheetCancel()">取消</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<ul>
+    <li>
+        身份证号
+        <input type="text" placeholder="请输入身份证号" ng-model="cardid">
+    </li>
+     <li ng-show="cardIdInfo.isinputname==1">
+        姓名
+        <input type="text" placeholder="请输入姓名" ng-model="username">
+    </li>
+</ul>
+
+<button ng-click="addCard()">添加</button>

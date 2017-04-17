@@ -33,6 +33,26 @@ app.config(['$routeProvider',function ($routeProvider) {
 			templateUrl: 'views/othercontent.html',
 			controller: 'otherContentCtrl'
 		})
+		.when('/bindmethod', { //选择绑卡方式
+			templateUrl: 'views/bindmethod.html',
+			controller: 'bindmethodCtrl'
+		})
+		.when('/cardnum', { //卡号绑卡
+			templateUrl: 'views/cardnum.html',
+			controller: 'cardnumCtrl'
+		})
+		.when('/cardid', { //身份证绑卡
+			templateUrl: 'views/card-id.html',
+			controller: 'cardIdCtrl'
+		})
+		.when('/cardhouse', { //小区楼号绑卡1
+			templateUrl: 'views/card-house.html',
+			controller: 'cardHouseCtrl'
+		})
+		.when('/cardaddress', { //地址或房屋号绑卡
+			templateUrl: 'views/card-address.html',
+			controller: 'cardAddressCtrl'
+		})
 		.otherwise({
             redirectTo: '/'
         });

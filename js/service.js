@@ -9,8 +9,8 @@ app.service('service', function ($q, $http, $location) {
 			$http.post(ajaxUrl, data).then(function successCallback(response) {
 				deferred.resolve(response.data);
 			}, function errorCallback(response) {
-				hideLoading()
-				alert('网络不给力哦！')
+				hideLoading();
+				showAlert('网络不给力哦！');
 			})
 			return deferred.promise;
 		},
@@ -24,47 +24,7 @@ app.service('service', function ($q, $http, $location) {
 				deferred.resolve(response.data);
 			}, function errorCallback(response) {
 				hideLoading()
-				alert('网络不给力哦！')
-			})
-			return deferred.promise;
-		},
-		bindingWarmCard1: function (custid, cardnum, username, companyname, alias, phonenum, smsverifycode) { //绑卡方式1:卡号，姓名，电话号码，验证码
-			var deferred = $q.defer();
-			var data = {
-				method: 'bindingwarmcard',
-				openid: openid,
-				custid: custid,
-				cardnum: cardnum,
-				username: username,
-				companyname: companyname,
-				alias: alias,
-				phonenum: phonenum,
-				smsverifycode: smsverifycode
-			}
-			$http.post(ajaxUrl, data).then(function successCallback(response) {
-				deferred.resolve(response.data);
-			}, function errorCallback(response) {
-				hideLoading()
-				alert('网络不给力哦！')
-			})
-			return deferred.promise;
-		},
-		bindingWarmCard2: function (custid, cardnum, companyname, roomid, username) { //绑卡方式2:身份证,姓名
-			var deferred = $q.defer();
-			var data = {
-				method: 'bindingwarmcard',
-				openid: openid,
-				custid: custid,
-				cardnum: cardnum,
-				companyname: companyname,
-				roomid: roomid,
-				username: username
-			}
-			$http.post(ajaxUrl, data).then(function successCallback(response) {
-				deferred.resolve(response.data);
-			}, function errorCallback(response) {
-				hideLoading()
-				alert('网络不给力哦！')
+				showAlert('网络不给力哦！');
 			})
 			return deferred.promise;
 		},
@@ -77,8 +37,8 @@ app.service('service', function ($q, $http, $location) {
 			$http.post(heatUrl + '?m=QueryCard', data).then(function successCallback(response) {
 				deferred.resolve(response.data);
 			}, function errorCallback(response) {
-				hideLoading()
-				alert('网络不给力哦！')
+				hideLoading();
+				showAlert('网络不给力哦！');
 			})
 			return deferred.promise;
 		},
@@ -87,8 +47,8 @@ app.service('service', function ($q, $http, $location) {
 			$http.post(heatUrl + '?m=getbushulist&company=' + companyname, data).then(function successCallback(response) {
 				deferred.resolve(response.data);
 			}, function errorCallback(response) {
-				hideLoading()
-				alert('网络不给力哦！')
+				hideLoading();
+				showAlert('网络不给力哦！');
 			})
 			return deferred.promise;
 		},
@@ -97,8 +57,8 @@ app.service('service', function ($q, $http, $location) {
 			$http.post(heatUrl + '?m=getbushulevel&company=' + companyname, data).then(function successCallback(response) {
 				deferred.resolve(response.data);
 			}, function errorCallback(response) {
-				hideLoading()
-				alert('网络不给力哦！')
+				hideLoading();
+				showAlert('网络不给力哦！');
 			})
 			return deferred.promise;
 		},
@@ -112,8 +72,8 @@ app.service('service', function ($q, $http, $location) {
 			$http.post(ajaxUrl, data).then(function successCallback(response) {
 				deferred.resolve(response.data);
 			}, function errorCallback(response) {
-				hideLoading()
-				alert('网络不给力哦！')
+				hideLoading();
+				showAlert('网络不给力哦！');
 			})
 			return deferred.promise;
 		},
@@ -128,8 +88,112 @@ app.service('service', function ($q, $http, $location) {
 			$http.post(ajaxUrl, data).then(function successCallback(response) {
 				deferred.resolve(response.data);
 			}, function errorCallback(response) {
-				hideLoading()
-				alert('网络不给力哦！')
+				hideLoading();
+				showAlert('网络不给力哦！');
+			})
+			return deferred.promise;
+		},
+		CompanytCardMode: function (custid) { //获取绑卡方式
+			var deferred = $q.defer();
+			var data = {
+				method: 'companytcardmode',
+				openid: openid,
+				custid:custid
+			}
+			$http.post(ajaxUrl, data).then(function successCallback(response) {
+				deferred.resolve(response.data);
+			}, function errorCallback(response) {
+				hideLoading();
+				showAlert('网络不给力哦！');
+			})
+			return deferred.promise;
+		},
+		bindingWarmCardBynum: function (cardnum,custid,companyname,alias,username,phonenum,code) { //绑卡：卡号+姓名+手机号验证码 
+			var deferred = $q.defer();
+			var data = {
+				method:'bindingwarmcard',
+				openid:openid,
+				custid:custid,
+				cardnum:cardnum,
+				companyname:companyname,
+				alias:alias,
+				username:username,
+				phonenum:phonenum,
+				smsverifycode:code
+			}
+			$http.post(ajaxUrl, data).then(function successCallback(response) {
+				deferred.resolve(response.data);
+			}, function errorCallback(response) {
+				hideLoading();
+				showAlert('网络不给力哦！');
+			})
+			return deferred.promise;
+		},
+		SendSMSverifyCode: function (tel) { //义马热力绑卡获取手机验证码
+			var deferred = $q.defer();
+			var data = {
+				method: 'sendsmsverifycode',
+				openid: openid,
+				tel:tel
+			}
+			$http.post(ajaxUrl, data).then(function successCallback(response) {
+				deferred.resolve(response.data);
+			}, function errorCallback(response) {
+				hideLoading();
+				showAlert('网络不给力哦！');
+			})
+			return deferred.promise;
+		},
+		FindIDcard: function (IDCard,Company) { //身份证查询
+			var deferred = $q.defer();
+			var data = {
+				IDCard: IDCard,
+				Company:Company
+			}
+			$http.post(heatUrl+'?m=QueryCard', data).then(function successCallback(response) {
+				deferred.resolve(response.data);
+			}, function errorCallback(response) {
+				hideLoading();
+				showAlert('网络不给力哦！');
+			})
+			return deferred.promise;
+		},
+		bindingwarmcardByid: function (roomid,cardnum,companyname,custid,username) { //身份证绑卡
+			var deferred = $q.defer();
+			var data = {
+				method: 'bindingwarmcard',
+				openid: openid,
+				roomid:roomid,
+				cardnum:cardnum,
+				companyname:companyname,
+				custid:custid,
+				username:username
+			}
+			$http.post(ajaxUrl, data).then(function successCallback(response) {
+				deferred.resolve(response.data);
+			}, function errorCallback(response) {
+				hideLoading();
+				showAlert('网络不给力哦！');
+			})
+			return deferred.promise;
+		},
+		getBushuListArea: function (companyname) { //小区绑卡获取类型
+			var deferred = $q.defer();
+			$http.post(heatUrl+'?m=getbushulist&company='+companyname).then(function successCallback(response) {
+				deferred.resolve(response.data);
+			}, function errorCallback(response) {
+				hideLoading();
+				showAlert('网络不给力哦！');
+			})
+			return deferred.promise;
+		},
+		CheckArea: function (companyname,bushulevelname,name) { //小区查询
+			var deferred = $q.defer();
+			$http.post(heatUrl+'?m=getbushulevel&company='+companyname+'&bushulevelname='+bushulevelname+'&Name='+name).then(function successCallback(response) {
+				deferred.resolve(response.data);
+			}, function errorCallback(response) {
+				hideLoading();
+				showAlert('网络不给力哦！');
 			})
 			return deferred.promise;
 		}

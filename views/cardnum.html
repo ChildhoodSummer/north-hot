@@ -1,0 +1,25 @@
+<ul>
+    <li>
+        供暖卡号
+        <input type="text" placeholder="请输入供暖卡号" ng-model="cardnum">
+    </li>
+    <li ng-show="cardnumInfo.isinputname==1">
+        姓名
+        <input type="text" placeholder="请输入用户姓名" ng-model="username">
+    </li>
+    <li>
+        代人缴费
+        <input type="text" placeholder="例如：给父母家缴费；可以为空" ng-model="otherperson">
+    </li>
+    <li ng-show="companyid==174"><!--义马-->
+        手机号
+        <input type="tel" placeholder="请输入手机号" id="ymtel">
+    </li>
+    <li ng-show="companyid==174"><!--义马-->
+        验证码
+        <input type="text" placeholder="请输入验证码" ng-model="vercode">
+        <button onclick="sendcode(this)">发送验证码</button>
+    </li>
+</ul>
+
+<button ng-click="addCard()">添加</button>
